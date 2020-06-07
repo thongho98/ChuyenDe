@@ -42,7 +42,7 @@ namespace ChungKhoan
 
         private void btnXacNhan_Click(object sender, EventArgs e)
         {
-            if (KiemTraTruocKhiXacNhan())
+           if (KiemTraTruocKhiXacNhan())
             {
                 char loaiGD = 'M';
                 if (toggleLoaiGD.IsOn)
@@ -96,12 +96,12 @@ namespace ChungKhoan
                 {
                     if (loaiGD == 'M')
                     {
-                        MessageBox.Show("Lệnh mua của bạn chưa khớp!");
+                        MessageBox.Show("Lệnh mua của bạn đang chờ khớp!");
                         return;
                     }
                     else
                     {
-                        MessageBox.Show("Lệnh bán của bạn chưa khớp!");
+                        MessageBox.Show("Lệnh bán của bạn đang chờ khớp!");
                         return;
                     }
                 }
@@ -140,19 +140,21 @@ namespace ChungKhoan
 
         private bool KiemTraTruocKhiXacNhan()
         {
-            if (txtGia.Text == "")
+            int gia = int.Parse(txtGia.Text);
+            if (txtGia.Text == "" || gia <= 0)
             {
                 MessageBox.Show("Giá phải là 1 giá trị lớn hơn 0");
                 txtGia.Focus();
                 return false;
             }
+            int soluong = int.Parse(txtSoluong.Text);
             if (txtSoluong.Text == "")
             {
                 MessageBox.Show("Số lượng là 1 giá trị lớn hơn 0");
                 txtSoluong.Focus();
                 return false;
             }
-            int soluong = int.Parse(txtSoluong.Text);
+            
             if (soluong > 500000)
             {
                 MessageBox.Show("Số lượng không quá 500,000 cổ phiếu cho 1 lần giao dịch");
